@@ -3,7 +3,7 @@ export default function Home() {
     <div className="container">
       <h1 className="title">Under Construction</h1>
       <p className="subtitle">
-        We're working hard to bring you something amazing. 
+        We are working hard to bring you something amazing.
         <br />
         Please check back soon!
       </p>
