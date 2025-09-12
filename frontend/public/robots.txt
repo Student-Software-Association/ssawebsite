@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://studentsoftware.org/sitemap.xml
