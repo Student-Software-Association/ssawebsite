@@ -1,0 +1,25 @@
+{
+  "name": "org-portal-backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "build": "tsc -p .",
+    "start": "node dist/src/server.js"
+  },
+  "dependencies": {
+    "@octokit/app": "^15.0.0",
+    "@octokit/graphql": "^8.0.0",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.14",
+    "octokit": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.17.0",
+    "typescript": "^5.6.2"
+  }
+}
