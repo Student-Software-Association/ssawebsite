@@ -3,15 +3,47 @@ import Image from 'next/image';
 export default function Hero() {
     return (
         <div 
-        className=""
+        className="relative w-full h-[calc(100vh)] overflow-hidden"
         >
-            <Image
+            <Image //HeroImage
                 src="https://placehold.co/1920x1080/png"
                 alt="Hero Placeholder"
-                width={1920}
-                height={1080}
-                className="w-full h-auto object-cover relative"
+                fill
+                className="object-cover"
             />
+            <div //HeroHeader
+                className="absolute inset-0 flex items-center justify-center z-10"
+            >
+                <h1 className="text-8xl text-white font-bold text-center">
+                    Student Software <span className="block">Association</span>
+                </h1>
+            </div>
+            <div //HeroSubheader 
+                className="absolute left-0 right-0 top-[65%] flex justify-center z-10 px-4">
+              <div className="relative inline-block border-1 border-gray-300 px-6 py-3 text-white text-xl rounded-none bg-black/30 shadow-xl">
+                <span // Top & Bottom extensions aligned to border center
+                  aria-hidden="true"
+                  className="
+                    pointer-events-none absolute inset-0
+                    before:content-[''] before:absolute before:top-[-0.5px] before:left-[-16px] before:right-[-16px] before:h-px before:bg-gray-300
+                    after:content-['']  after:absolute  after:bottom-[-0.5px] after:left-[-16px] after:right-[-16px] after:h-px  after:bg-gray-300
+                  "
+                />
+                <span // Left & Right extensions aligned to border center
+                  aria-hidden="true"
+                  className="
+                    pointer-events-none absolute inset-0
+                    before:content-[''] before:absolute before:left-[-0.5px] before:top-[-16px] before:bottom-[-16px] before:w-px before:bg-gray-300
+                    after:content-['']  after:absolute  after:right-[-0.5px]  after:top-[-16px]  after:bottom-[-16px]  after:w-px  after:bg-gray-300
+                  "
+                />
+                <p //Subheader Text
+                    className="relative z-10 text-center">
+                  A student-led tech club for builders,<span className="block">coders, and creatives.</span>
+                </p>
+              </div>
+            </div>
+
         </div>
     );
 }
