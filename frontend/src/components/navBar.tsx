@@ -1,9 +1,34 @@
+"use client"
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 const NavBar = () => {
+
+    const [showNav, setShowNav] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > lastScrollY) {//Scrolling down
+                setShowNav(false);
+            } else {//Scrolling up
+                setShowNav(true);
+            }
+            setLastScrollY(window.scrollY);
+        };
+        
+        window.addEventListener("scroll", handleScroll);    
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [lastScrollY]);
+
     return (
-        <div 
-            className="w-full flex flex-row justify-between relative bg-black mx-auto"
+        <div
+            className={`fixed top-0 left-0 z-50
+            w-full flex flex-row justify-between bg-black mx-auto 
+            ${showNav ? "translate-y-0" : "-translate-y-full"} transition-transform duration-300`}
         >
             
             <div
@@ -38,7 +63,7 @@ const NavBar = () => {
             >
 
                 <Link
-                    href={`https://discord.gg/${process.env.DISCORD_INVITE_CODE}`}
+                    href={`https://discord.gg/${process.env.NEXT_PUBLIC_DISCORD_INVITE_CODE}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Join the SSA Discord"
