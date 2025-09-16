@@ -35,13 +35,23 @@ const NavBar = () => {
                 id="Logo"
                 className="justify-start my-4 mx-6"
             >
-                <Image
-                    src="/logo.svg"
-                    alt="SSA Logo"
-                    width={58}
-                    height={58}
-                    className=""
-                />
+                <Link href="/" className="group inline-flex items-center gap-4">
+                    <Image
+                        src="/logo.svg"
+                        alt="SSA Logo"
+                        width={58}
+                        height={58}
+                        className="cursor-pointer transform-gpu transition-transform duration-250 ease-in-out group-hover:rotate-[360deg]"
+                    />
+                    <span className="relative inline-block select-none whitespace-nowrap">
+                        <span className="text-white font-semibold opacity-0 items-center">
+                            Student Software <span className="block">Association</span>
+                        </span>
+                        <span className="absolute left-0 top-0 h-full w-0 overflow-hidden items-center text-[16px] font-semibold text-white transition-[width] duration-700 ease-out group-hover:w-full">
+                            Student Software <span className="block">Association</span>
+                        </span>
+                    </span>
+                </Link>
             </div>
             <div 
                 id="NavLinks"
@@ -51,11 +61,39 @@ const NavBar = () => {
                 gap-x-6 my-8 mx-auto w-fit 
                 items-center text-white text-[20px]"
             >
-                <Link href="/student-projects">Student Projects</Link>
-                <Link href="/resources">Resources</Link>
-                <Link href="/events">Events</Link>
-                <Link href="/blogs">Blogs</Link>
-                <Link href="/about">About</Link>
+                {/*Orignal link line looked like
+                <Link className="hover:underline" href="/resources">Resources</Link>
+                */}
+                <Link href="/student-projects" className="group inline-block">
+                    <span className="relative inline-block">
+                        Student Projects
+                        <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-white transform scale-x-0 origin-left transition-transform duration-400 group-hover:scale-x-100" />
+                    </span>
+                </Link>
+                <Link href="/resources" className="group inline-block">
+                    <span className="relative inline-block">
+                        Resources
+                        <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-white transform scale-x-0 origin-left transition-transform duration-400 group-hover:scale-x-100" />
+                    </span>
+                </Link>
+                <Link href="/events" className="group inline-block">
+                    <span className="relative inline-block">
+                        Events
+                        <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-white transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
+                    </span>
+                </Link>
+                <Link href="/blogs" className="group inline-block">
+                    <span className="relative inline-block">
+                        Blogs
+                        <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-white transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
+                    </span>
+                </Link>
+                <Link href="/about" className="group inline-block">
+                    <span className="relative inline-block">
+                        About
+                        <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-white transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
+                    </span>
+                </Link>
             </div>
             <div 
                 id="RightButtons"
@@ -67,13 +105,15 @@ const NavBar = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Join the SSA Discord"
-                    className='underline mr-4'
+                    className='underline mr-4 hover:font-bold hover:text underline-offset-[22%]'
                 >
                     Join the Discord
                 </Link>
                 <span>
-                    <button className='rounded-2xl border-2 p-2 border-white shadow-xl'>
-                        Contact Us
+                    <button className='rounded-4xl border-2 p-3 px-6 border-white
+                     hover:bg-white hover:cursor-pointer hover:border-gray-500 hover:text-black hover:shadow-md transition-colors duration-300'>
+
+                        Contact Us!
                     </button>
                 </span>
             </div>

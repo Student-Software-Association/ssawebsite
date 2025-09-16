@@ -1,15 +1,16 @@
-import Image from 'next/image';
-
+"use client";
+import LetterGlitch from "./LetterGlitch";
 export default function Hero() {
     return (
         <div 
         className="relative w-full h-[calc(100vh)] overflow-hidden"
         >
-            <Image //HeroImage
-                src="https://placehold.co/1920x1080/png"
-                alt="Hero Placeholder"
-                fill
-                className="object-cover"
+            <LetterGlitch 
+            glitchSpeed={1}
+            centerVignette={true}
+            outerVignette={true}
+            smooth={true}
+            characters={'01'}
             />
             <div //HeroHeader
                 className="absolute inset-0 flex items-center justify-center z-10"
@@ -20,7 +21,7 @@ export default function Hero() {
             </div>
             <div //HeroSubheader 
                 className="absolute left-0 right-0 top-[65%] flex justify-center z-10 px-4">
-              <div className="relative inline-block border-1 border-gray-300 px-6 py-3 text-white text-xl rounded-none bg-black/30 shadow-xl">
+                <div className="relative inline-block border-1 border-gray-300 px-6 py-3 text-white text-xl rounded-none bg-black/30 backdrop-blur-[2px]">
                 <span // Top & Bottom extensions aligned to border center
                   aria-hidden="true"
                   className="
