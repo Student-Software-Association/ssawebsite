@@ -195,9 +195,8 @@ const LetterGlitch = ({
       cancelAnimationFrame(animationRef.current);
       window.removeEventListener('resize', handleResize);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [glitchSpeed, smooth]);
 
+  }, [glitchSpeed, smooth, animate, resizeCanvas]);
   const containerStyle = {
     position: 'relative',
     width: '100%',
