@@ -74,7 +74,7 @@ const NavBar = () => {
                 gap-x-6 my-8 mx-auto w-fit 
                 items-center text-white text-[20px]"
             >
-                {/*Orignal link line looked like
+                {/*Original link line looked like
                 <Link className="hover:underline" href="/resources">Resources</Link>
                 */}
                 <Link href="/student-projects" className="group inline-block">
