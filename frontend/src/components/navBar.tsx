@@ -172,7 +172,7 @@ const NavBar = () => {
                       &times;
                     </button>
                     <nav className="flex flex-col gap-4 text-black text-2xl w-full py-0">
-                    <Link href="/student-projects" onClick={() => setMobileMenuOpen(false)} className="hover:underline font-semibold3">Student Projects↗</Link>
+                    <Link href="/student-projects" onClick={() => setMobileMenuOpen(false)} className="hover:underline font-semibold">Student Projects↗</Link>
                     <div className="w-full h-px bg-black/20 my-1" />
                     <Link href="/resources" onClick={() => setMobileMenuOpen(false)} className="hover:underline">Resources↗</Link>
                     <div className="w-full h-px bg-black/20 my-1" />
