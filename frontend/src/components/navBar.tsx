@@ -31,8 +31,7 @@ const NavBar = () => {
             ${showNav ? "translate-y-0" : "-translate-y-full"} transition-transform duration-300`}
         >
             
-            <div
-                id="Logo"
+            <div //Logo
                 className="justify-start my-4 mx-6"
             >
                 <Link href="/" className="group inline-flex items-center gap-4">
@@ -41,21 +40,20 @@ const NavBar = () => {
                         alt="SSA Logo"
                         width={58}
                         height={58}
-                        className="cursor-pointer transform-gpu transition-transform duration-250 ease-in-out group-hover:rotate-[360deg]"
+                        className="xl:cursor-pointer xl:transform-gpu xl:transition-transform xl:duration-250 xl:ease-in-out xl:group-hover:rotate-[360deg]"
                     />
                     <span className="relative inline-block select-none whitespace-nowrap">
                         <span className="text-white font-semibold opacity-0 items-center">
                             Student Software <span className="block">Association</span>
                         </span>
-                        <span className="absolute left-0 top-0 h-full w-0 overflow-hidden items-center text-[16px] font-semibold text-white transition-[width] duration-700 ease-out group-hover:w-full">
+                        <span className="absolute left-0 top-0 h-full w-0 overflow-hidden items-center text-[16px] font-semibold text-white xl:transition-[width] xl:duration-700 xl:ease-out xl:group-hover:w-full">
                             Student Software <span className="block">Association</span>
                         </span>
                     </span>
                 </Link>
             </div>
-            <div 
-                id="NavLinks"
-                className="
+            <div //NavLinks
+                className="max-xl:hidden
                 absolute left-0 right-0 
                 flex flex-row justify-center 
                 gap-x-6 my-8 mx-auto w-fit 
@@ -95,9 +93,8 @@ const NavBar = () => {
                     </span>
                 </Link>
             </div>
-            <div 
-                id="RightButtons"
-                className="justify-end m-6 text-white text-sm"
+            <div //RightButtons
+                className="justify-end m-6 text-white text-sm max-xl:hidden"
             >
 
                 <Link
@@ -112,10 +109,10 @@ const NavBar = () => {
                 <span>
                     <button className='rounded-4xl border-2 p-3 px-6 border-white
                      hover:bg-white hover:cursor-pointer hover:border-gray-500 hover:text-black hover:shadow-md transition-colors duration-300'>
-
                         Contact Us!
                     </button>
                 </span>
+
             </div>
             
         </div>

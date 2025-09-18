@@ -3,7 +3,7 @@ import LetterGlitch from "./LetterGlitch";
 export default function Hero() {
     return (
         <div 
-        className="relative w-full h-[calc(100vh)] overflow-hidden"
+        className="relative w-full max-sm:h-[calc(70vh)] h-[calc(85vh)] overflow-hidden"
         >
             <LetterGlitch 
             glitchSpeed={1}
@@ -15,12 +15,12 @@ export default function Hero() {
             <div //HeroHeader
                 className="absolute inset-0 flex items-center justify-center z-10"
             >
-                <h1 className="text-8xl text-white font-bold text-center">
+                <h1 className="xl:text-8xl lg:text-8xl md:text-6xl max-md:text-5xl max-sm:text-5xl text-white font-bold text-center">
                     Student Software <span className="block">Association</span>
                 </h1>
             </div>
             <div //HeroSubheader 
-                className="absolute left-0 right-0 top-[65%] flex justify-center z-10 px-4">
+                className="absolute left-0 right-0 4xl:top-[70%] max-xl:top-[70%] xl:top-[75%] md:top-[75%] max-md:top-[65%] max-sm:top-[70%] flex justify-center z-10 px-4">
                 <div className="relative inline-block border-1 border-gray-300 px-6 py-3 text-white text-xl rounded-none bg-black/30 backdrop-blur-[2px]">
                 <span // Top & Bottom extensions aligned to border center
                   aria-hidden="true"
@@ -39,7 +39,7 @@ export default function Hero() {
                   "
                 />
                 <p //Subheader Text
-                    className="relative z-10 text-center">
+                    className="relative z-10 text-center 4xl:text-4xl 3xl:text-2xl lg:text-2xl">
                   A student-led tech club for builders,<span className="block">coders, and creatives.</span>
                 </p>
               </div>
