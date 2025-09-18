@@ -24,7 +24,7 @@ const NavBar = () => {
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, [lastScrollY]);
+    }, [lastScrollY, showOverlay]);
 
     // Handle overlay fade-in after rotation
     useEffect(() => {
