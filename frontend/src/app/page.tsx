@@ -1,7 +1,5 @@
+import PageHome from "@/components/pages/PageHome";
+
 export default function Home() {
-  return (
-    <div>
-      <h1> Hey </h1>
-    </div>
-  );
+  return <PageHome />;
 }
