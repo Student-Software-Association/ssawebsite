@@ -3,11 +3,110 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-sans: "Neue Montreal", system-ui, -apple-system, sans-serif;
+  --font-mono: "Neue Montreal Mono", monospace;
 }
-
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
+
+
+@keyframes ssaMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-ssaMarquee {
+  animation-name: ssaMarquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+
+/* ================================
+   PP Neue Montreal
+   ================================ */
+
+   @font-face {
+    font-family: "Neue Montreal";
+    src: url("/fonts/PPNeueMontreal-Thin.otf") format("opentype");
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Neue Montreal";
+    src: url("/fonts/PPNeueMontreal-Book.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Neue Montreal";
+    src: url("/fonts/PPNeueMontreal-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Neue Montreal";
+    src: url("/fonts/PPNeueMontreal-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Neue Montreal";
+    src: url("/fonts/PPNeueMontreal-Italic.otf") format("opentype");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Neue Montreal";
+    src: url("/fonts/PPNeueMontreal-SemiBoldItalic.otf") format("opentype");
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+  }
+  
+  
+  /* ================================
+     PP Neue Montreal Mono
+     ================================ */
+  
+  @font-face {
+    font-family: "Neue Montreal Mono";
+    src: url("/fonts/PPNeueMontrealMono-Book.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Neue Montreal Mono";
+    src: url("/fonts/PPNeueMontrealMono-Medium.otf") format("opentype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: "Neue Montreal Mono";
+    src: url("/fonts/PPNeueMontrealMono-Bold.otf") format("opentype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+
+  
+  
