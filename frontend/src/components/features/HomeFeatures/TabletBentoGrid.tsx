@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { ReactNode } from "react";
 
 /* gray mini icons */
 export const CollaborateIcon = "/Icons/miniIcons/CollaborateIcon.svg";
@@ -9,7 +10,7 @@ export const StartIcon = "/Icons/miniIcons/StartIcon.svg";
 export const TechIcon = "/Icons/miniIcons/TechIcon.svg";
 
 interface BentoCardProps {
-  title: string;
+  title: ReactNode;
   description: string;
   icon: string;
   imageSrc?: string;

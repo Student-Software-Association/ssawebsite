@@ -86,8 +86,8 @@ export default function VerticalScrollMobile() {
                 &<span style={{fontWeight: 700}}> Big Ideas</span></h1>
             </div>
             <div className="text-left text-[16px]">
-                <p style={{ fontFamily: "Neue Montreal", fontWeight: 400}}>From curious students to a thriving software society — 
-                    here's how SSA came to life, and where we're headed next.</p>
+                <p style={{ fontFamily: "Neue Montreal", fontWeight: 400}}>From curious students to a thriving software society —{" "}
+                    {"here's how SSA came to life, and where we're headed next."}</p>
             </div>
         </article>
 
