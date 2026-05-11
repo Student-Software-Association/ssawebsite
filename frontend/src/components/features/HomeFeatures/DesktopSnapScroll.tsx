@@ -123,7 +123,7 @@ export default function DiscoverCanvasSnap() {
                 delay: 0.05,
                 ease: "power2.out",
               }
-            : false,
+            : undefined,
         onUpdate: (self) => {
           const idx = Math.round(self.progress * (count - 1));
           if (idx === lastIdx) return;

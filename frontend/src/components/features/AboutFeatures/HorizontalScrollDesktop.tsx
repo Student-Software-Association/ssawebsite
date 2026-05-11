@@ -95,8 +95,8 @@ export default function HorizontalTimelineDesktop() {
                 &<span style={{fontWeight: 700}}> Big Ideas</span></h1>
             </div>
             <div className="w-100 text-right text-[clamp(16px,1.5vw,20px)]">
-                <p style={{ fontFamily: "Neue Montreal", fontWeight: 400}}>From curious students to a thriving software society — 
-                    here's how SSA came to life, and where we're headed next.</p>
+                <p style={{ fontFamily: "Neue Montreal", fontWeight: 400}}>From curious students to a thriving software society —{" "}
+                    {"here's how SSA came to life, and where we're headed next."}</p>
             </div>
         </article>
 

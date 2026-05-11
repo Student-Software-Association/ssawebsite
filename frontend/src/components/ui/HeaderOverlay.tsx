@@ -13,7 +13,7 @@ const navItems: { label: string; href: string }[] = [
   { label: "Resources", href: "#" },
   { label: "Events", href: "/events" },
   { label: "Blogs", href: "/blogs" },
-  { label: "Company", href: "/about" }, // matches your mock ("Company")
+  { label: "About", href: "/about" }, 
 ];
 
 export default function HeaderOverlay({ onClose }: HeaderOverlayProps) {
@@ -73,17 +73,14 @@ export default function HeaderOverlay({ onClose }: HeaderOverlayProps) {
       ref={backdropRef}
       className="fixed inset-0 z-51 bg-black/40"
       onMouseDown={(e) => {
-        // click outside to close
         if (e.target === e.currentTarget) handleClose();
       }}
     >
-      {/* IMPORTANT: not full height — just a floating dropdown */}
       <div className="absolute right-4 top-20">
         <div
           ref={panelRef}
           className="w-[320px] sm:w-[360px] rounded-br-[32px] rounded-bl-[32px] rounded-tl-[32px] bg-gradient-to-b from-[#f7f7f7] to-[#e3e3e3] text-black shadow-2xl overflow-hidden w-full"
           style={{
-            // matches the “not full viewport” feel in the mock
             maxHeight: "520px",
           }}
         >
@@ -115,7 +112,7 @@ export default function HeaderOverlay({ onClose }: HeaderOverlayProps) {
             ))}
           </nav>
 
-          {/* Bottom actions (like your mock) */}
+          {/* Bottom actions */}
           <div className="flex items-center justify-between px-6 py-5 gap-4">
             <a
               href="#"
@@ -127,14 +124,14 @@ export default function HeaderOverlay({ onClose }: HeaderOverlayProps) {
 
             <a
               href="#"
-              className="inline-flex items-center justify-center px-7 py-2.5 rounded-full bg-black text-white text-sm font-medium hover:bg-black/90 transition-colors shadow-[0_6px_0_rgba(0,0,0,0.25)]"
+              className="inline-flex items-center justify-center px-7 py-2.5 rounded-full border border-white bg-black text-white text-sm font-medium hover:bg-black/90 transition-colors shadow-[0_6px_0_rgba(0,0,0,1)]"
               style={{ fontFamily: "Neue Montreal", fontWeight: 500 }}
             >
               Contact Us!
             </a>
           </div>
 
-          {/* Optional: bottom padding to match the airy spacing in the mock */}
+        
           <div className="h-3" />
         </div>
       </div>
