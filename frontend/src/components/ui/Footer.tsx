@@ -98,9 +98,9 @@ export default function Footer() {
                 style={{fontFamily: "Neue Montreal", fontWeight: 400}}>
                   {column.title}
                 </h4>
-                {column.links.map((link) => (
+                {column.links.map((link, i) => (
                   <a
-                    key={link.label}
+                    key={`${link.label}-${i}`}
                     href={link.href ?? "#"}
                     style={{fontFamily: "Neue Montreal", fontWeight: 400}}
                     className="block text-[#A1A5AA] text-[16px] font-normal mb-2 hover:text-white/85 transition-colors"
@@ -197,9 +197,9 @@ export default function Footer() {
             <h4 className="text-white/85 text-[22px] font-medium mb-5">
               {FOR_STUDENTS.title}
             </h4>
-            {FOR_STUDENTS.links.map((l) => (
+            {FOR_STUDENTS.links.map((l, i) => (
               <a
-                key={l.label}
+                key={`${l.label}-${i}`}
                 href={l.href ?? "#"}
                 className="block text-white/70 text-[18px] mb-2 hover:text-white/90 transition-colors"
               >
@@ -212,9 +212,9 @@ export default function Footer() {
             <h4 className="text-white/85 text-[22px] font-medium mb-5">
               {RESOURCES.title}
             </h4>
-            {RESOURCES.links.map((l) => (
+            {RESOURCES.links.map((l, i) => (
               <a
-                key={l.label}
+                key={`${l.label}-${i}`}
                 href={l.href ?? "#"}
                 className="block text-white/70 text-[18px] mb-2 hover:text-white/90 transition-colors"
               >
@@ -351,9 +351,9 @@ export default function Footer() {
             <h4 className="text-white/85 text-[20px] font-medium mb-4">
               {FOR_STUDENTS.title}
             </h4>
-            {FOR_STUDENTS.links.map((l) => (
+            {FOR_STUDENTS.links.map((l, i) => (
               <a
-                key={l.label}
+                key={`${l.label}-${i}`}
                 href={l.href ?? "#"}
                 className="block text-white/70 text-[16px] mb-2 hover:text-white/90 transition-colors"
               >
@@ -366,9 +366,9 @@ export default function Footer() {
             <h4 className="text-white/85 text-[20px] font-medium mb-4">
               {RESOURCES.title}
             </h4>
-            {RESOURCES.links.map((l) => (
+            {RESOURCES.links.map((l, i) => (
               <a
-                key={l.label}
+                key={`${l.label}-${i}`}
                 href={l.href ?? "#"}
                 className="block text-white/70 text-[16px] mb-2 hover:text-white/90 transition-colors"
               >
