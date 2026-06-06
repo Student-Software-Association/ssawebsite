@@ -54,26 +54,18 @@ function BookButton({ url }: { url: string | null }) {
   );
 }
 
+const IMG_PLACEHOLDER = "/Icons/other-images/Portrait_placeholder.svg.png";
+
 function ImagePanel({ event }: { event: Event }) {
   return (
     <div className="relative w-full h-full min-h-[220px] md:min-h-[280px] overflow-hidden">
-      {event.image_url ? (
-        <Image
-          src={event.image_url}
-          alt={event.title}
-          fill
-          className="object-cover object-center"
-          sizes="(max-width: 768px) 100vw, 55vw"
-        />
-      ) : (
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(135deg, #0b0f2e 0%, #111535 50%, #0d1028 100%)",
-          }}
-        />
-      )}
+      <Image
+        src={event.image_url || IMG_PLACEHOLDER}
+        alt={event.title}
+        fill
+        className="object-cover object-center"
+        sizes="(max-width: 768px) 100vw, 55vw"
+      />
       {/* bottom gradient overlay on image */}
       <div
         className="absolute inset-0"

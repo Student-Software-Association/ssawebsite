@@ -1,5 +1,9 @@
 "use client";
 
+import Image from "next/image";
+
+const IMG_PLACEHOLDER = "/Icons/other-images/Portrait_placeholder.svg.png";
+
 type Phase = {
   id: string;
   year: string;
@@ -56,7 +60,15 @@ function TabletTimelineItem({ year, title, caption }: Phase) {
         </div>
 
         <div className="mt-10">
-          <div className="w-full h-[300px] md:h-[420px] rounded-[34px] border border-white/25 bg-black/20" />
+          <div className="w-full h-[300px] md:h-[420px] rounded-[34px] border border-white/25 bg-black/20 relative overflow-hidden">
+            <Image
+              src={IMG_PLACEHOLDER}
+              alt={title}
+              fill
+              className="object-cover opacity-60"
+              sizes="(max-width: 768px) 100vw, 760px"
+            />
+          </div>
           {caption && (
             <div className="mt-4 text-white/75 text-[18px] leading-relaxed">
               <p style={{ fontFamily: "Neue Montreal", fontWeight: 400}}>

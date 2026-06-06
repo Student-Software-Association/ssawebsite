@@ -15,13 +15,14 @@ type Phase = {
   caption?: string;
 };
 
-// need to update the image file updates
+const IMG_PLACEHOLDER = "/Icons/other-images/Portrait_placeholder.svg.png";
+
 const PHASES: Phase[] = [
   {
     id: "spark",
     title: "The Spark",
     year: "2016",
-    image: "/images/timeline/spark.webp",
+    image: IMG_PLACEHOLDER,
     caption:
       "A small group of students came together to explore programming and share ideas.",
   },
@@ -29,7 +30,7 @@ const PHASES: Phase[] = [
     id: "public",
     title: "Going Public",
     year: "2018",
-    image: "/images/timeline/public.webp",
+    image: IMG_PLACEHOLDER,
     caption:
       "SSA opened its doors to the wider campus, hosting its first public events.",
   },
@@ -37,7 +38,7 @@ const PHASES: Phase[] = [
     id: "guild",
     title: "Growing the Guild",
     year: "2023",
-    image: "/images/timeline/guild.webp",
+    image: IMG_PLACEHOLDER,
     caption:
       "More builders joined the community, launching projects and workshops.",
   },
@@ -45,7 +46,7 @@ const PHASES: Phase[] = [
     id: "next",
     title: "Next Chapter",
     year: "2026",
-    image: "/images/timeline/next.webp",
+    image: IMG_PLACEHOLDER,
     caption:
       "The next era focuses on building real software and mentoring new developers.",
   },

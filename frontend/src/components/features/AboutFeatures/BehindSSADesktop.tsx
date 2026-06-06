@@ -11,41 +11,43 @@ type Person = {
   bio: string;
 };
 
+const PORTRAIT = "/Icons/portrait-images/portrait-placeholder.jpg";
+
 const PEOPLE: Person[] = [
   {
     name: "Axel",
     role: "President of SSA",
-    image: "/images/placeholder-team.webp",
+    image: PORTRAIT,
     backTitle: "AXEL",
     bio: "Leading the vision of the Student Software Association.",
   },
   {
     name: "Elliot Shcmel",
     role: "VP Engineering",
-    image: "/images/placeholder-team.webp",
+    image: PORTRAIT,
     backTitle: "ELLIOT",
     bio: "Ensuring engineering excellence and project standards.",
   },
   {
     name: "Farnaz Abdolmaleki",
     role: "Community Lead",
-    image: "/images/placeholder-team.webp",
+    image: PORTRAIT,
     backTitle: "FARNAZ",
     bio: "Connecting students and building the community.",
   },
   {
     name: "Reyhanna",
     role: "Events Coordinator",
-    image: "/images/placeholder-team.webp",
+    image: PORTRAIT,
     backTitle: "Reyhanna",
     bio: "Creating memorable events and collaborations.",
   },
   {
     name: "Hafiz Aakif Umar",
     role: "React Developer & UI/UX Designer",
-    image: "/images/placeholder-team.webp",
+    image: PORTRAIT,
     backTitle: "Aakif",
-    bio: "Creating memorable events and collaborations.",
+    bio: "Building the web presence and visual identity of SSA.",
   },
 ];
 

@@ -8,27 +8,20 @@ function displayName(p: Project) {
   return p.extra?.display_name ?? prettifyRepoName(p.name);
 }
 
-/** Right / top panel — screenshot or dark gradient placeholder */
+const IMG_PLACEHOLDER = "/Icons/other-images/Portrait_placeholder.svg.png";
+
+/** Right / top panel — screenshot or placeholder */
 function ScreenshotPanel({ project }: { project: Project }) {
-  const url = project.extra?.screenshot_url;
+  const url = project.extra?.screenshot_url || IMG_PLACEHOLDER;
   return (
-    <div
-      className="relative w-full h-full min-h-[180px]"
-      style={{
-        background: url
-          ? undefined
-          : "linear-gradient(135deg, #0b0f2e 0%, #111535 60%, #0d1028 100%)",
-      }}
-    >
-      {url && (
-        <Image
-          src={url}
-          alt={`${displayName(project)} screenshot`}
-          fill
-          className="object-cover object-top"
-          sizes="(max-width: 1024px) 100vw, 40vw"
-        />
-      )}
+    <div className="relative w-full h-full min-h-[180px]">
+      <Image
+        src={url}
+        alt={`${displayName(project)} screenshot`}
+        fill
+        className="object-cover object-top"
+        sizes="(max-width: 1024px) 100vw, 40vw"
+      />
       {/* subtle inner border overlay */}
       <div className="absolute inset-0 rounded-r-2xl border-l border-white/[0.06]" />
     </div>
