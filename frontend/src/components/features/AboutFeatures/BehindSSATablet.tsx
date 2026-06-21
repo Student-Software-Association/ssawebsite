@@ -10,30 +10,32 @@ type Person = {
   image: string;
 };
 
+const PORTRAIT = "/Icons/portrait-images/portrait-placeholder.jpg";
+
 const PEOPLE: Person[] = [
   {
     name: "Lucas Brian",
     role: "President & Founding Member",
     bio: "Lucas started SSA with a simple goal: help students turn ideas into code. He’s passionate about building inclusive tech communities, and always down for late-night Figma deep dives and pizza-fueled planning sessions.",
-    image: "/images/placeholder-team.webp",
+    image: PORTRAIT,
   },
   {
     name: "Alex Chen",
     role: "VP of Engineering",
     bio: "Alex helps shape engineering standards across projects and supports members in turning rough ideas into polished builds.",
-    image: "/images/placeholder-team.webp",
+    image: PORTRAIT,
   },
   {
     name: "Jordan Lee",
     role: "Community Lead",
     bio: "Jordan focuses on helping students feel welcome, connected, and confident as they join the club and contribute to projects.",
-    image: "/images/placeholder-team.webp",
+    image: PORTRAIT,
   },
   {
     name: "Sam Taylor",
     role: "Events Coordinator",
     bio: "Sam organizes meetups, workshops, and community sessions that make SSA feel collaborative, active, and fun.",
-    image: "/images/placeholder-team.webp",
+    image: PORTRAIT,
   },
 ];
 

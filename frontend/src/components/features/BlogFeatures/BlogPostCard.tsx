@@ -2,28 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 import type { BlogPost } from "@/types/blog";
 
+const IMG_PLACEHOLDER = "/Icons/other-images/Portrait_placeholder.svg.png";
+
 type Props = { post: BlogPost };
 
 export default function BlogPostCard({ post }: Props) {
   const bg =
     post.card_image_url?.trim() ||
     post.hero_image_url?.trim() ||
-    null;
+    IMG_PLACEHOLDER;
 
   return (
     <Link
       href={`/blogs/${post.slug}`}
       className="group relative block overflow-hidden rounded-3xl aspect-[4/5] min-h-[280px] w-full border border-white/10 bg-[#12101c] shadow-lg shadow-black/40 transition-transform duration-300 hover:-translate-y-0.5 hover:border-white/20"
     >
-      {bg ? (
-        <Image
-          src={bg}
-          alt=""
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-      ) : null}
+      <Image
+        src={bg}
+        alt=""
+        fill
+        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+      />
       <div
         className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/25"
         aria-hidden

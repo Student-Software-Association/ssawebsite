@@ -1,10 +1,29 @@
-import Image from "next/image";
+"use client";
 
-const HERO_BG = "/images/homepage/SSABHomepage.webp";
+import Image from "next/image";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+
+gsap.registerPlugin(useGSAP);
+
+const HERO_BG = "/images/stuproject-banners/stuproject-desktop.png";
 
 export default function StudentProjectsHero() {
+  const containerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      gsap.timeline({ delay: 0.25 })
+        .fromTo("[data-hero-h1]", { y: 52, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, ease: "power3.out" })
+        .fromTo("[data-hero-p]", { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power2.out" }, "-=0.5");
+    },
+    { scope: containerRef }
+  );
+
   return (
-    <section className="relative w-full overflow-hidden min-h-[420px] md:min-h-[480px]">
+    <section ref={containerRef} className="relative w-full overflow-hidden min-h-[420px] md:min-h-[480px]">
       <Image
         src={HERO_BG}
         alt=""
@@ -21,6 +40,7 @@ export default function StudentProjectsHero() {
       />
       <div className="relative z-10 px-4 sm:px-8 md:px-12 lg:px-16 pt-44 pb-16 md:pt-52 md:pb-20 max-w-3xl mx-auto text-center">
         <h1
+          data-hero-h1
           className="text-white leading-tight tracking-[-0.02em] text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] mb-4 md:mb-5"
           style={{ fontFamily: "Neue Montreal", fontWeight: 700 }}
         >
@@ -29,6 +49,7 @@ export default function StudentProjectsHero() {
           from The SSA
         </h1>
         <p
+          data-hero-p
           className="text-gray-300/85 max-w-xl mx-auto text-[15px] sm:text-[16px] md:text-[17px] leading-relaxed"
           style={{ fontFamily: "Neue Montreal", fontWeight: 400 }}
         >

@@ -1,9 +1,13 @@
-/*
- * Footer Component (Responsive)
- * Desktop / Tablet / Mobile layouts in ONE file
- */
+"use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 type FooterColumn = {
   title: string;
@@ -27,19 +31,16 @@ const footerColumns: FooterColumn[] = [
     links: [
       { label: "Careers", href: "/careers" },
       { label: "Student Topics", href: "/topics" },
-      { label: "Lorem", href: "#" },
-      { label: "Lorem", href: "#" },
-      { label: "Lorem", href: "#" },
+      { label: "Discord Server", href: "https://discord.gg/studentsoftwareassociation" },
+      { label: "GitHub Org", href: "https://github.com/Student-Software-Association" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Github Sheets", href: "#" },
+      { label: "GitHub Projects", href: "https://github.com/Student-Software-Association" },
       { label: "Project Guidelines", href: "#" },
-      { label: "Lorem", href: "#" },
-      { label: "Lorem", href: "#" },
-      { label: "Lorem", href: "#" },
+      { label: "Code of Conduct", href: "#" },
     ],
   },
   {
@@ -54,11 +55,65 @@ const footerColumns: FooterColumn[] = [
   {
     title: "Help Center",
     links: [
-      { label: "@studentsoftware.org", href: "mailto:hello@studentsoftware.org" },
+      { label: "hello@studentsoftware.org", href: "mailto:hello@studentsoftware.org" },
       { label: "axel@studentsoftware.org", href: "mailto:axel@studentsoftware.org" },
     ],
   },
 ];
+
+const SOCIAL_LINKS = [
+  { src: "/Icons/footericons/Instagram.svg", alt: "Instagram", href: "https://instagram.com/studentsoftwareassociation" },
+  { src: "/Icons/footericons/Twitter(X).svg", alt: "Twitter / X", href: "https://x.com/ssatech" },
+  { src: "/Icons/footericons/Discord.svg", alt: "Discord", href: "https://discord.gg/studentsoftwareassociation" },
+  { src: "/Icons/footericons/LinkedIn.svg", alt: "LinkedIn", href: "https://linkedin.com/company/student-software-association" },
+  { src: "/Icons/footericons/Github.svg", alt: "GitHub", href: "https://github.com/Student-Software-Association" },
+];
+
+const LINK_CLASS = "block text-white/60 text-[13px] mb-2.5 hover:text-white/95 transition-colors duration-150";
+const LINK_STYLE = { fontWeight: 400 };
+
+/** Renders <Link> for internal paths, <a> for external/mailto/anchor */
+function FooterLink({ href, label }: { href: string; label: string }) {
+  if (href.startsWith("/")) {
+    return (
+      <Link href={href} className={LINK_CLASS} style={LINK_STYLE}>
+        {label}
+      </Link>
+    );
+  }
+  return (
+    <a
+      href={href}
+      className={LINK_CLASS}
+      style={LINK_STYLE}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+    >
+      {label}
+    </a>
+  );
+}
+
+function SocialIcons({ gap = "gap-4" }: { gap?: string }) {
+  return (
+    <div className={`flex items-center flex-wrap ${gap}`}>
+      {SOCIAL_LINKS.map(({ src, alt, href }) => (
+        <a
+          key={alt}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={alt}
+          className="opacity-55 hover:opacity-100 hover:scale-110 transition-all duration-200"
+        >
+          <Image src={src} width={24} height={24} alt={alt} />
+        </a>
+      ))}
+    </div>
+  );
+}
+
+const MARQUEE_TEXT = "STUDENT SOFTWARE ASSOCIATION · BUILD. SHIP. LEARN. · ";
 
 const NAV = footerColumns[0];
 const FOR_STUDENTS = footerColumns[1];
@@ -67,414 +122,218 @@ const DATA_CONTROL = footerColumns[3];
 const HELP = footerColumns[4];
 
 export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      gsap.fromTo(
+        "[data-footer-logo]",
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top bottom",
+            once: true,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        "[data-footer-col]",
+        { opacity: 0, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.07,
+          duration: 0.6,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "[data-footer-cols]",
+            start: "top bottom",
+            once: true,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        "[data-footer-bar]",
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: "[data-footer-bar]",
+            start: "top bottom",
+            once: true,
+            invalidateOnRefresh: true,
+          },
+        }
+      );
+    },
+    { scope: footerRef }
+  );
+
   return (
     <footer
-      className="relative"
+      ref={footerRef}
+      className="relative overflow-hidden"
       style={{
-        background: "linear-gradient(180deg, #02030a 0%, #070818 100%)",
+        background: "linear-gradient(180deg, #02030a 0%, #050818 100%)",
+        fontFamily: "Neue Montreal, sans-serif",
       }}
     >
+      {/* ── Marquee strip ── */}
+      <div className="border-t border-white/[0.07] py-3 overflow-hidden">
+        <div
+          className="flex whitespace-nowrap animate-ssaMarquee"
+          style={{ animationDuration: "24s" }}
+        >
+          {Array.from({ length: 8 }).map((_, i) => (
+            <span
+              key={i}
+              className="text-white/18 text-[11px] tracking-[0.18em] uppercase mr-10"
+              style={{ fontWeight: 500 }}
+            >
+              {MARQUEE_TEXT}
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* ========== DESKTOP (lg+) ========== */}
-      <div className="hidden lg:block pr-[2rem] pl-[2rem] pt-[10rem] pb-[2rem]">
-        {/* Top row: logo + 5 columns */}
-        <div className="flex gap-16 justify-between">
-          {/* Logo */}
-          <div className="flex-shrink-0">
+      <div className="hidden lg:block px-10 pt-16 pb-8">
+        <div className="flex items-start justify-between gap-16 mb-14">
+          <div data-footer-logo className="flex-shrink-0 pt-1">
             <Image
               src="/images/SSALogoWhite.webp"
               alt="Student Software Association"
-              width={144}
-              height={144}
-              className="w-36 h-36 object-contain"
-              priority={false}
+              width={72}
+              height={72}
+              className="w-[72px] h-[72px] object-contain opacity-85"
             />
           </div>
 
-          {/* Columns */}
-          <div className="flex grid grid-cols-5 justify-items-end gap-1 pt-4">
+          <div data-footer-cols className="grid grid-cols-5 gap-10 flex-1 max-w-[860px] ml-auto">
             {footerColumns.map((column) => (
-              <div key={column.title}>
-                <h4 className="text-white/85 text-[20px] font-medium mb-4"
-                style={{fontFamily: "Neue Montreal", fontWeight: 400}}>
+              <div key={column.title} data-footer-col>
+                <h4
+                  className="text-white/45 text-[11px] tracking-[0.15em] uppercase mb-4"
+                  style={{ fontWeight: 500 }}
+                >
                   {column.title}
                 </h4>
-                {column.links.map((link) => (
-                  <a
-                    key={link.label}
-                    href={link.href ?? "#"}
-                    style={{fontFamily: "Neue Montreal", fontWeight: 400}}
-                    className="block text-[#A1A5AA] text-[16px] font-normal mb-2 hover:text-white/85 transition-colors"
-                  >
-                    {link.label}
-                  </a>
+                {column.links.map((link, i) => (
+                  <FooterLink key={`${link.label}-${i}`} href={link.href ?? "#"} label={link.label} />
                 ))}
               </div>
             ))}
           </div>
         </div>
 
-        {/* Social icons (RIGHT, above divider) */}
-        <div className="mt-30 flex justify-end">
-        
-
-          <div className="flex items-center gap-4">
-            <Image
-              src="/Icons/footericons/Discord.svg"
-              width={30}
-              height={30}
-              alt="Discord"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-
-            <Image
-              src="/Icons/footericons/Github.svg"
-              width={30}
-              height={30}
-              alt="GitHub"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-
-            <Image
-              src="/Icons/footericons/Instagram.svg"
-              width={30}
-              height={30}
-              alt="LinkedIn"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-
-            <Image
-              src="/Icons/footericons/LinkedIn.svg"
-              width={30}
-              height={30}
-              alt="Twitter"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-
-            <Image
-              src="/Icons/footericons/Twitter(X).svg"
-              width={30}
-              height={30}
-              alt="Instagram"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div className="mt-8 border-t border-white/15" />
-
-        {/* Bottom row */}
-        <div className="pt-7 flex items-center justify-between">
-          <span className="text-white/35 text-[14px]">
-            @StudentSoftwareAssociation
+        <div data-footer-bar className="border-t border-white/[0.07] pt-6 flex items-center justify-between">
+          <span className="text-white/28 text-[12px]" style={{ fontWeight: 400 }}>
+            © 2025 Student Software Association
           </span>
-          <span className="text-white/35 text-[14px] text-right">
-            Designed with &lt;3 by SSA | Vancouver
+          <SocialIcons />
+          <span className="text-white/28 text-[12px] text-right" style={{ fontWeight: 400 }}>
+            Designed with ♥ by SSA · Vancouver
           </span>
         </div>
       </div>
 
-      {/* ========== TABLET (md - lg) ========== */}
-      <div className="hidden md:block lg:hidden px-12 pt-16 pb-10">
-        {/* Columns in 2-col grid like screenshot */}
-        <div className="grid grid-cols-2 gap-x-16 gap-y-12">
-          <div>
-            <h4 className="text-white/85 text-[22px] font-medium mb-5">
-              {NAV.title}
-            </h4>
-            {NAV.links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href ?? "#"}
-                className="block text-white/70 text-[18px] mb-2 hover:text-white/90 transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-
-          <div>
-            <h4 className="text-white/85 text-[22px] font-medium mb-5">
-              {FOR_STUDENTS.title}
-            </h4>
-            {FOR_STUDENTS.links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href ?? "#"}
-                className="block text-white/70 text-[18px] mb-2 hover:text-white/90 transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-
-          <div>
-            <h4 className="text-white/85 text-[22px] font-medium mb-5">
-              {RESOURCES.title}
-            </h4>
-            {RESOURCES.links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href ?? "#"}
-                className="block text-white/70 text-[18px] mb-2 hover:text-white/90 transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-
-          <div>
-            <h4 className="text-white/85 text-[22px] font-medium mb-5">
-              {DATA_CONTROL.title}
-            </h4>
-            {DATA_CONTROL.links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href ?? "#"}
-                className="block text-white/70 text-[18px] mb-2 hover:text-white/90 transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-
-          {/* Help Center (full width like screenshot) */}
-          <div className="col-span-2">
-            <h4 className="text-white/85 text-[22px] font-medium mb-5">
-              {HELP.title}
-            </h4>
-            {HELP.links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href ?? "#"}
-                className="block text-white/70 text-[18px] mb-2 hover:text-white/90 transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Logo left + icons centered */}
-        <div className="mt-16 flex items-end justify-between">
-          <div>
+      {/* ========== TABLET (md–lg) ========== */}
+      <div className="hidden md:block lg:hidden px-10 pt-14 pb-10">
+        <div className="flex items-start justify-between gap-10 mb-12">
+          <div data-footer-logo className="flex-shrink-0">
             <Image
               src="/images/SSALogoWhite.webp"
-              alt="Student Software Association"
-              width={92}
-              height={92}
-              className="w-[92px] h-[92px] object-contain opacity-90"
+              alt="SSA"
+              width={56}
+              height={56}
+              className="opacity-80"
             />
           </div>
-
-          <div className="flex items-center gap-3">
-          <Image
-              src="/Icons/footericons/Instagram.svg"
-              width={30}
-              height={30}
-              alt="LinkedIn"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-
-          <Image
-              src="/Icons/footericons/Twitter(X).svg"
-              width={30}
-              height={30}
-              alt="Instagram"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />    
-
-            <Image
-              src="/Icons/footericons/Discord.svg"
-              width={30}
-              height={30}
-              alt="Discord"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-
-            <Image
-              src="/Icons/footericons/LinkedIn.svg"
-              width={30}
-              height={30}
-              alt="Twitter"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-
-
-            <Image
-              src="/Icons/footericons/Github.svg"
-              width={30}
-              height={30}
-              alt="GitHub"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-            
+          <div data-footer-cols className="grid grid-cols-3 gap-8 flex-1">
+            {[NAV, FOR_STUDENTS, RESOURCES].map((col) => (
+              <div key={col.title} data-footer-col>
+                <h4 className="text-white/45 text-[11px] tracking-[0.14em] uppercase mb-3" style={{ fontWeight: 500 }}>
+                  {col.title}
+                </h4>
+                {col.links.map((l, i) => (
+                  <FooterLink key={`${l.label}-${i}`} href={l.href ?? "#"} label={l.label} />
+                ))}
+              </div>
+            ))}
+            {[DATA_CONTROL, HELP].map((col) => (
+              <div key={col.title} data-footer-col>
+                <h4 className="text-white/45 text-[11px] tracking-[0.14em] uppercase mb-3" style={{ fontWeight: 500 }}>
+                  {col.title}
+                </h4>
+                {col.links.map((l, i) => (
+                  <FooterLink key={`${l.label}-${i}`} href={l.href ?? "#"} label={l.label} />
+                ))}
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="mt-10 border-t border-white/15" />
-
-        {/* Bottom row */}
-        <div className="pt-7 flex items-center justify-between"
-        style={{ fontFamily: "Neue Montreal"}}
-        >
-          <span className="text-white/35 text-[14px] ">
-            @StudentSoftwareAssociation
-          </span>
-          <span className="text-white/35 text-[14px] text-right">
-            Designed with &lt;3 by SSA | Vancouver
-          </span>
+        <div data-footer-bar className="border-t border-white/[0.07] pt-5 flex items-center justify-between">
+          <span className="text-white/28 text-[12px]">@StudentSoftwareAssociation</span>
+          <SocialIcons gap="gap-3" />
+          <span className="text-white/28 text-[12px]">Designed with ♥ by SSA</span>
         </div>
       </div>
 
       {/* ========== MOBILE (<md) ========== */}
-      <div className="block md:hidden px-7 pt-14 pb-10">
-        {/* 2-col grid for top sections (like screenshot) */}
-        <div className="grid grid-cols-2 gap-x-10 gap-y-12">
-          <div>
-            <h4 className="text-white/85 text-[20px] font-medium mb-4">
-              {NAV.title}
-            </h4>
-            {NAV.links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href ?? "#"}
-                className="block text-white/70 text-[16px] mb-2 hover:text-white/90 transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-
-          <div>
-            <h4 className="text-white/85 text-[20px] font-medium mb-4">
-              {FOR_STUDENTS.title}
-            </h4>
-            {FOR_STUDENTS.links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href ?? "#"}
-                className="block text-white/70 text-[16px] mb-2 hover:text-white/90 transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-
-          <div>
-            <h4 className="text-white/85 text-[20px] font-medium mb-4">
-              {RESOURCES.title}
-            </h4>
-            {RESOURCES.links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href ?? "#"}
-                className="block text-white/70 text-[16px] mb-2 hover:text-white/90 transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
-
-          <div>
-            <h4 className="text-white/85 text-[20px] font-medium mb-4">
-              {DATA_CONTROL.title}
-            </h4>
-            {DATA_CONTROL.links.map((l) => (
-              <a
-                key={l.label}
-                href={l.href ?? "#"}
-                className="block text-white/70 text-[16px] mb-2 hover:text-white/90 transition-colors"
-              >
-                {l.label}
-              </a>
-            ))}
-          </div>
+      <div className="block md:hidden px-6 pt-12 pb-10">
+        <div data-footer-logo className="mb-10 pb-8 border-b border-white/[0.07]">
+          <Image
+            src="/images/SSALogoWhite.webp"
+            alt="SSA"
+            width={48}
+            height={48}
+            className="opacity-80 mb-4"
+          />
+          <p className="text-white/40 text-[13px] leading-relaxed" style={{ fontWeight: 400 }}>
+            A student-led tech club for builders, coders, and creatives.
+          </p>
         </div>
 
-        {/* Help Center (single column) */}
-        <div className="mt-12">
-          <h4 className="text-white/85 text-[20px] font-medium mb-4">
-            {HELP.title}
-          </h4>
-          {HELP.links.map((l) => (
-            <a
-              key={l.label}
-              href={l.href ?? "#"}
-              className="block text-white/70 text-[16px] mb-2 hover:text-white/90 transition-colors"
-            >
-              {l.label}
-            </a>
+        <div data-footer-cols className="grid grid-cols-2 gap-x-8 gap-y-8 mb-10">
+          {[NAV, FOR_STUDENTS, RESOURCES, DATA_CONTROL].map((col) => (
+            <div key={col.title} data-footer-col>
+              <h4 className="text-white/45 text-[11px] tracking-[0.12em] uppercase mb-3" style={{ fontWeight: 500 }}>
+                {col.title}
+              </h4>
+              {col.links.map((l, i) => (
+                <FooterLink key={`${l.label}-${i}`} href={l.href ?? "#"} label={l.label} />
+              ))}
+            </div>
           ))}
         </div>
 
-        {/* Logo + icons row */}
-        <div className="mt-14 flex items-end justify-between">
-          <Image
-            src="/images/SSALogoWhite.webp"
-            alt="Student Software Association"
-            width={64}
-            height={64}
-            className="w-12 h-12 object-contain opacity-90"
-          />
-
-          <div className="flex items-center gap-1.5">
-          <Image
-              src="/Icons/footericons/Instagram.svg"
-              width={30}
-              height={30}
-              alt="LinkedIn"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-
-          <Image
-              src="/Icons/footericons/Twitter(X).svg"
-              width={30}
-              height={30}
-              alt="Instagram"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />    
-
-            <Image
-              src="/Icons/footericons/Discord.svg"
-              width={30}
-              height={30}
-              alt="Discord"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-
-            <Image
-              src="/Icons/footericons/LinkedIn.svg"
-              width={30}
-              height={30}
-              alt="Twitter"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-
-
-            <Image
-              src="/Icons/footericons/Github.svg"
-              width={30}
-              height={30}
-              alt="GitHub"
-              className="opacity-80 hover:opacity-100 transition-opacity"
-            />
-          </div>
+        <div className="mb-8">
+          <h4 className="text-white/45 text-[11px] tracking-[0.12em] uppercase mb-3" style={{ fontWeight: 500 }}>
+            {HELP.title}
+          </h4>
+          {HELP.links.map((l) => (
+            <FooterLink key={l.label} href={l.href ?? "#"} label={l.label} />
+          ))}
         </div>
 
-        {/* Divider */}
-        <div className="mt-10 border-t border-white/15" />
-
-        {/* Bottom text stacked like screenshot */}
-        <div className="pt-7">
-          <div className="text-white/35 text-[14px]">
-            @StudentSoftwareAssociation
-          </div>
-          <div className="mt-4 text-white/35 text-[14px]">
-            Designed with &lt;3 by SSA | Vancouver
-          </div>
+        <div data-footer-bar className="border-t border-white/[0.07] pt-6 flex items-center justify-between mb-4">
+          <SocialIcons gap="gap-2.5" />
         </div>
+        <div className="text-white/28 text-[12px]">© 2025 Student Software Association · Vancouver</div>
       </div>
     </footer>
   );
